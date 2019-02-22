@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { NotifyService } from '../services/notify.service';
 import { CartService } from '../services/cart.service';
 import { CART_ITEM_LIST } from '../cart/cart-item-list';
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-product',
@@ -16,19 +17,28 @@ export class ProductComponent implements OnInit {
 
   products: Product[];
 
-  constructor(private productService: ProductService, private httpClient: HttpClient, @Inject('apiUrl') private apiUrl,private notifyService:NotifyService,private cartService:CartService) { }
+  constructor(private productService: ProductService, private httpClient: HttpClient, @Inject('apiUrl') private apiUrl,
+    private activatedRoute: ActivatedRoute, private notifyService: NotifyService, private cartService: CartService) { }
 
   ngOnInit() {
-    this.getProducts();
+    this.activatedRoute.params.subscribe(params => {
+      this.getProducts(params["seoUrl"]);
+    })
   }
 
-  getProducts() {
-    this.httpClient.get<Product[]>(this.apiUrl + '/products').subscribe(response => {
-      this.products = response;
-    });
+  getProducts(seoCategories: string) {
+    if (seoCategories) {
+      this.httpClient.get<Product[]>(this.apiUrl + '/products/'+seoCategories).subscribe(response => {
+        this.products = response;
+      });
+    } else {
+      this.httpClient.get<Product[]>(this.apiUrl + '/products').subscribe(response => {
+        this.products = response;
+      });
+    }
   }
 
-  AddToCart(product:Product){
+  AddToCart(product: Product) {
     this.cartService.AddToCart(product);
 
     this.notifyService.SuccessMessage(product.productName);
@@ -43,5 +53,5 @@ export class ProductComponent implements OnInit {
     this.notifyService.InfoMessage(product.productName);
     */
   }
-  
+
 }

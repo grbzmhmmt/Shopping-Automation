@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { Routes, RouterModule} from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
@@ -17,6 +17,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { CartService } from './services/cart.service';
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { ProductFilterPipe } from './pipes/product-filter.pipe';
+import { from } from 'rxjs';
+
+  const routes: Routes = [
+    { path: '', redirectTo:'products', pathMatch: 'full' },
+    { path: 'products', component:ProductComponent },
+    { path: 'products/:seoUrl', component:ProductComponent},
+    { path: 'myCart', component:CartComponent}
+
+  ];
 
 @NgModule({
   declarations: [
@@ -36,7 +45,8 @@ import { ProductFilterPipe } from './pipes/product-filter.pipe';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     {provide:'apiUrl',useValue:'http://northwindapi.azurewebsites.net/api'},

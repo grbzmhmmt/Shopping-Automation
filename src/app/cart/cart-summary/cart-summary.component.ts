@@ -14,7 +14,6 @@ export class CartSummaryComponent implements OnInit,DoCheck {
     this.totalCartItem=this.cartService.list().reduce((a,b)=>a+b.quantity,0);
     this.totalCartItemPrice=this.cartService.list().reduce((a,b)=>a+b.product.unitPrice*b.quantity,0);
     this.cartItems=this.cartService.list();
-    console.log(this.totalCartItemPrice);
   }
 
   constructor(private cartService:CartService) { }
