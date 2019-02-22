@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Product } from './product';
-import { ProductList } from './product-list.mock';
 import { ProductService } from './product.service';
 import { HttpClient } from '@angular/common/http';
 import { NotifyService } from '../services/notify.service';

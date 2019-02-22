@@ -3,6 +3,6 @@ export class Product{
     productName:string;
     categoryId:number;
     quantityPerUnit:string;
-    unirPrice:number;
+    unitPrice:number;
     unitInStock:number;
 }

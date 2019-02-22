@@ -1,14 +1,17 @@
 <h4 class="page-header">Products </h4>
 <div class=" alert alert-success" *ngIf="addedProduct!=null && addedProduct!=''">{{addedProduct}} Added To Cart</div>
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="filterText">
+  </div>
 <div>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let product of products">
+    <li class="list-group-item" *ngFor="let product of products|productFilter:filterText">
       <button (click)="AddToCart(product)" class="btn btn-xs btn-primary pull-right">
         <i class="glyphicon glyphicon-plus"></i>
         Add To Cart</button>
-      <h5> <strong>{{product.productName}}</strong></h5>
+      <h5> <strong>{{product.productName| uppercase}}</strong></h5>
       <p>{{product.quantityPerUnit}}</p>
-      <h6>{{product.unitPrice}}</h6>
+      <h6>{{product.unitPrice|currency:'€'}}(VAT includedv: {{product.unitPrice|vatAdded|currency:'€'}})</h6>
     </li>
   </ul>
 </div>

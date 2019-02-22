@@ -15,6 +15,8 @@ import { LoggedComponent } from './account/logged/logged.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CartService } from './services/cart.service';
+import { VatAddedPipe } from './pipes/vat-added.pipe';
+import { ProductFilterPipe } from './pipes/product-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { CartService } from './services/cart.service';
     ShippingDetailComponent,
     CartSummaryComponent,
     LoggedComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    VatAddedPipe,
+    ProductFilterPipe
   ],
   imports: [
     BrowserModule,
