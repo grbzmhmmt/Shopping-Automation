@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Category } from './category';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-category',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor() { }
+  url:string=this.apiUrl+'/categories';
+  categories:Category[];
+  constructor(private httpClient:HttpClient,@Inject('apiUrl')private apiUrl) { }
 
   ngOnInit() {
+    this.getCategories();
   }
+
+  
+  getCategories(){
+    this.httpClient.get<Category[]>(this.url).subscribe(res=>this.categories=res);
+  }
+
 
 }
