@@ -3,6 +3,7 @@ import { Product } from './product';
 import { ProductList } from './product-list.mock';
 import { ProductService } from './product.service';
 import { HttpClient } from '@angular/common/http';
+import { NotifyService } from '../services/notify.service';
 
 @Component({
   selector: 'app-product',
@@ -14,7 +15,7 @@ export class ProductComponent implements OnInit {
 
   products: Product[];
   addedProduct:string;
-  constructor(private productService: ProductService, private httpClient: HttpClient, @Inject('apiUrl') private apiUrl) { }
+  constructor(private productService: ProductService, private httpClient: HttpClient, @Inject('apiUrl') private apiUrl,private notifyService:NotifyService) { }
 
   ngOnInit() {
     this.getProducts();
@@ -27,8 +28,10 @@ export class ProductComponent implements OnInit {
   }
 
   AddToCart(product:Product){
-    this.addedProduct=product.productName;
-    
+    this.notifyService.SuccessMessage(product.productName);
+    this.notifyService.WarningMessage(product.productName);
+    this.notifyService.ErrorMessage(product.productName);
+    this.notifyService.InfoMessage(product.productName);
   }
   
 }
