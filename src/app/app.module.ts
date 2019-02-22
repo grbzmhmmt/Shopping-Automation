@@ -14,6 +14,7 @@ import { CartSummaryComponent } from './cart/cart-summary/cart-summary.component
 import { LoggedComponent } from './account/logged/logged.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CartService } from './services/cart.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    {provide:'apiUrl',useValue:'http://northwindapi.azurewebsites.net/api'}
+    {provide:'apiUrl',useValue:'http://northwindapi.azurewebsites.net/api'},
+    CartService
   ],
   bootstrap: [AppComponent]
 })
