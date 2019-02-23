@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartItem } from './cart-item';
 import { CartService } from '../services/cart.service';
 import { Product } from '../product/product';
+import { NotifyService } from '../services/notify.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,7 @@ import { Product } from '../product/product';
 export class CartComponent implements OnInit {
 
   cartItems: CartItem[];
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,private notifyService:NotifyService) { }
   isProductRemoved: boolean = false;
 
   ngOnInit() {
@@ -23,6 +24,7 @@ export class CartComponent implements OnInit {
     if (confirm('Are You Sure!')) {
       this.cartService.RemoveFromCart(product);
       this.isProductRemoved = true;
+      this.notifyService.ErrorMessage(product.productName)
     }
 
   }

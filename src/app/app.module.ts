@@ -17,14 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { CartService } from './services/cart.service';
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { ProductFilterPipe } from './pipes/product-filter.pipe';
-import { from } from 'rxjs';
 
   const routes: Routes = [
     { path: '', redirectTo:'products', pathMatch: 'full' },
     { path: 'products', component:ProductComponent },
     { path: 'products/:seoUrl', component:ProductComponent},
-    { path: 'myCart', component:CartComponent}
-
+    { path: 'myCart', component:CartComponent},
+   { path: 'shipping-detail', component:ShippingDetailComponent}
   ];
 
 @NgModule({

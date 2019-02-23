@@ -15,17 +15,20 @@ export class NotifyService {
   }
   WarningMessage(message:string){
     
-    alertify.warning(message+" Add to Cart");
+    alertify.warning(message+" Warning");
   }
   ErrorMessage(message:string){
     
-    alertify.error(message+" Add to Cart");
+    alertify.error(message+" Removed to Cart");
   }
   InfoMessage(message:string){
     
-    alertify.message(message+" Add to Cart");
+    alertify.message("This is a message "+message);
   }
   
+  PaySuccess(message:string){
+    alertify.success(message);
+  }
 
   
 
