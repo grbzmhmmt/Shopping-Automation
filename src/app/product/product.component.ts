@@ -1,23 +1,23 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Product } from './product';
-import { ProductService } from './product.service';
 import { HttpClient } from '@angular/common/http';
 import { NotifyService } from '../services/notify.service';
 import { CartService } from '../services/cart.service';
 import { CART_ITEM_LIST } from '../cart/cart-item-list';
 import { ActivatedRoute } from '@angular/router'
+import { Pager } from '../app-pager';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
-  providers: [ProductService]
+  providers: []
 })
 export class ProductComponent implements OnInit {
 
   products: Product[];
-
-  constructor(private productService: ProductService, private httpClient: HttpClient, @Inject('apiUrl') private apiUrl,
+  pager:Pager=new Pager();
+  constructor( private httpClient: HttpClient, @Inject('apiUrl') private apiUrl,
     private activatedRoute: ActivatedRoute, private notifyService: NotifyService, private cartService: CartService) { }
 
   ngOnInit() {
@@ -30,10 +30,12 @@ export class ProductComponent implements OnInit {
     if (seoCategories) {
       this.httpClient.get<Product[]>(this.apiUrl + '/products/'+seoCategories).subscribe(response => {
         this.products = response;
+        this.pager=this.GetPager(response.length);
       });
     } else {
       this.httpClient.get<Product[]>(this.apiUrl + '/products').subscribe(response => {
         this.products = response;
+        this.pager=this.GetPager(response.length);
       });
     }
   }
@@ -54,4 +56,24 @@ export class ProductComponent implements OnInit {
     */
   }
 
+  GetPager(totalItems:number,currentPage:number=1,pageSize:number=3):Pager{
+    let totalPages=Math.ceil(totalItems/pageSize);
+    let pages:Array<number>=[];
+    for(let i =1;i<=totalPages;i++){
+      pages.push(i);
+    }
+
+    var pager=new Pager();
+
+    pager.currentPage=currentPage;
+    pager.pageSize=pageSize;
+    pager.pageList=pages;
+
+    return pager; 
+
+  }
+
+  SetPage(page:number){
+    this.pager.currentPage=page;
+  }
 }

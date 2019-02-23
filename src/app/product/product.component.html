@@ -5,7 +5,7 @@
   </div>
 <div>
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let product of products|productFilter:filterText">
+    <li class="list-group-item" *ngFor="let product of products|productFilter:filterText | slice:(pager.currentPage-1)*pager.pageSize:((pager.currentPage-1)*pager.pageSize)+pager.pageSize">
       <button (click)="AddToCart(product)" class="btn btn-xs btn-primary pull-right">
         <i class="glyphicon glyphicon-plus"></i>
         Add To Cart</button>
@@ -15,3 +15,16 @@
     </li>
   </ul>
 </div>
+
+
+<nav aria-label="Page Navigation">
+  <ul class="pagination">
+    <li *ngFor="let page of pager.pageList" [class.active]="page===pager.currentPage">
+      <a style="cursor:pointer;" (click)="SetPage(page)">{{page}}</a>
+    </li>
+  </ul>
+</nav>
+
+
+
+
