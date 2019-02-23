@@ -1,6 +1,6 @@
 <h4 class="page-header">Your Cart</h4>
 
-<table class="table table-responsive" *ngIf="cartItems.length>0">
+<table class="table table-responsive" *ngIf="cartItems.length>0;else NoCartItem">
   <thead>
     <tr>
       <th>Product Name</th>
@@ -24,3 +24,8 @@
     </tr>
   </tbody>
 </table>
+<ng-template #NoCartItem>
+  <div class="alert alert-info text-center">
+    <h4>Your Cart Is Empty</h4>
+  </div>
+</ng-template>

@@ -26,6 +26,8 @@ export class CartSummaryComponent implements OnInit,DoCheck {
     
   }
 
-
+  RemoveFromCart(cartItem:CartItem){
+    this.cartService.RemoveFromCart(cartItem.product);
+  }
 
 }
