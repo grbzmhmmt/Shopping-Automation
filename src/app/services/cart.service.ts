@@ -36,8 +36,14 @@ export class CartService {
   RemoveFromCart(product: Product) {
     var cartItem=CART_ITEM_LIST.find(p=>p.product.productId==product.productId);
     if(cartItem){
-      var indexNo=CART_ITEM_LIST.indexOf(cartItem);
-      CART_ITEM_LIST.splice(indexNo,1);
+      if(cartItem.quantity==1){
+        var indexNo=CART_ITEM_LIST.indexOf(cartItem);
+        CART_ITEM_LIST.splice(indexNo,1);
+      
+      }
+      else{
+        cartItem.quantity--;
+      }
     }
   }
 
