@@ -1,0 +1,9 @@
+
+<hr>
+<p>
+  subscribe-examp-child works!
+</p>
+
+<input type="text" [(ngModel)]="denemeText" (change)="changeValue(denemeText)" >
+<p>{{denemeText}}</p>
+<button class="btn btn-primary" (click)="changeValue(denemeText)">Send</button>
