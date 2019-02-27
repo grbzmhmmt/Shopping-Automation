@@ -28,7 +28,7 @@ import { SubscribeExampChildComponent } from './subscribe-Examp/subscribe-examp-
     { path: 'subscribe', component:SubscribeExampComponent},
     { path: 'shipping-detail', component:ShippingDetailComponent},
     { path: '**', component:NotFoundComponent},
-    
+
   ];
 
 @NgModule({
