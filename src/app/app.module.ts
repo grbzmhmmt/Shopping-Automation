@@ -26,6 +26,7 @@ import { SubscribeExampChildComponent } from './subscribe-Examp/subscribe-examp-
     { path: 'products/:seoUrl', component:ProductComponent},
     { path: 'myCart', component:CartComponent},
     { path: 'subscribe', component:SubscribeExampComponent},
+    { path: 'shipping-detail', component:ShippingDetailComponent},
     
     
   ];
