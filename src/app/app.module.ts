@@ -27,6 +27,7 @@ import { SubscribeExampChildComponent } from './subscribe-Examp/subscribe-examp-
     { path: 'myCart', component:CartComponent},
     { path: 'subscribe', component:SubscribeExampComponent},
     { path: 'shipping-detail', component:ShippingDetailComponent},
+    { path: '**', component:NotFoundComponent},
     
     
   ];
@@ -45,14 +46,14 @@ import { SubscribeExampChildComponent } from './subscribe-Examp/subscribe-examp-
     VatAddedPipe,
     ProductFilterPipe,
     SubscribeExampComponent,
-    SubscribeExampChildComponent
+    SubscribeExampChildComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
   ],
   providers: [
     {provide:'apiUrl',useValue:'http://northwindapi.azurewebsites.net/api'},
