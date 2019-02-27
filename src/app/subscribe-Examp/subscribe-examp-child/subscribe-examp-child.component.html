@@ -1,9 +1,7 @@
 
 <hr>
-<p>
-  subscribe-examp-child works!
-</p>
-
-<input type="text" [(ngModel)]="denemeText" (change)="changeValue(denemeText)" >
-<p>{{denemeText}}</p>
+<P>This Component send model(two way binding) with subscribe model</P>
+<input type="text" [(ngModel)]="denemeText" (change)="changeValue(denemeText)" placeholder="Type Something" >
+&nbsp;
 <button class="btn btn-primary" (click)="changeValue(denemeText)">Send</button>
+<p>Type Something and Click enter or send button</p>
