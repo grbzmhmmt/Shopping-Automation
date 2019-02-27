@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  description: string = `It's a :rocket:`;
   constructor() { }
 
   ngOnInit() {
